@@ -31,29 +31,29 @@
 - ¿Que es? El encapsulamiento es la idea de agrupar datos (propiedades) y las funciones que operan sobre esos datos (métodos) en una sola unidad: un objeto.
 - Fundamentación: Antes, los datos (operandos) y la lógica (suma, resta, etc.) estaban en archivos separados. El handler.js tenía que importar todo y actuar como un "coordinador" manual. Ahora, la Calculadora es una unidad autónoma.
 - Ejemplo: La función constructora Calculadora crea un objeto que "encapsula" su propio estado:
-  function Calculadora(this: ICalculadora) {
-    this.operandos = []; // Estado (dato)
-    this.resultado = null; // Estado (dato)
-  }
+  * function Calculadora(this: ICalculadora) {
+  *    this.operandos = []; // Estado (dato)
+  *    this.resultado = null; // Estado (dato)
+  * }
   Y también encapsula su comportamiento (métodos):
-  Calculadora.prototype.calcular = function(this: ICalculadora, operacion: number): void {
-    // ...lógica de switch...
-  };
+  * Calculadora.prototype.calcular = function(this: ICalculadora, operacion: number): void {
+  *    // ...lógica de switch...
+  * };
   La instancia miCalculadora en handler.ts ahora "posee" tanto sus datos como la lógica para trabajar con ellos.
 
 2. Abstracción
 - ¿Que es? La abstracción consiste en ocultar los detalles complejos de implementación y exponer solo las funciones esenciales. Es el "qué" (la API pública) vs. el "cómo" (la lógica interna).
 - Fundamentación: Este es el beneficio más grande que obtuviste. Tu archivo handler.ts (el "consumidor" del objeto) ahora es increíblemente simple. No le importa cómo se suma o se divide; solo le pide a la calculadora que lo haga.
 - Ejemplo: La Abstracción (Lo que SÍ se ve): El handler.ts solo conoce e interactúa con la interfaz ICalculadora:
-    // handler.ts
-    miCalculadora.setOperandos(operandos);
-    miCalculadora.calcular(operacion);
+    * // handler.ts
+    * miCalculadora.setOperandos(operandos);
+    * miCalculadora.calcular(operacion);
   La Implementación Oculta (Lo que NO se ve): El handler.ts no tiene idea de que existen estos métodos "privados" (por convención, con guion bajo _). Estos son los detalles de implementación que se han ocultado.
-    // calculadora.ts
-    Calculadora.prototype._suma = function(this: ICalculadora): number { /* ... */ };
-    Calculadora.prototype._resta = function(this: ICalculadora): number { /* ... */ };
-    Calculadora.prototype._mult = function(this: ICalculadora): number { /* ... */ };
-    Calculadora.prototype._div = function(this: ICalculadora): number { /* ... */ };
+    * // calculadora.ts
+    * Calculadora.prototype._suma = function(this: ICalculadora): number { /* ... */ };
+    * Calculadora.prototype._resta = function(this: ICalculadora): number { /* ... */ };
+    * Calculadora.prototype._mult = function(this: ICalculadora): number { /* ... */ };
+    * Calculadora.prototype._div = function(this: ICalculadora): number { /* ... */ };
   Si mañana se decidiera cambiar la lógica de _suma para usar un método más eficiente, handler.ts no necesita ningún cambio, porque la abstracción (calcular) no cambió.
 
 **Caracteristicas de OOP NO utilizadas**
