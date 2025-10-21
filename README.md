@@ -38,8 +38,8 @@
   Y también encapsula su comportamiento (métodos):
   * Calculadora.prototype.calcular = function(this: ICalculadora, operacion: number): void {
   *    // ...lógica de switch...
-  * };\n
-  La instancia miCalculadora en handler.ts ahora "posee" tanto sus datos como la lógica para trabajar con ellos.
+  * };
+  - La instancia miCalculadora en handler.ts ahora "posee" tanto sus datos como la lógica para trabajar con ellos.
 
 2. Abstracción
 - ¿Que es? La abstracción consiste en ocultar los detalles complejos de implementación y exponer solo las funciones esenciales. Es el "qué" (la API pública) vs. el "cómo" (la lógica interna).
@@ -48,13 +48,13 @@
     * // handler.ts
     * miCalculadora.setOperandos(operandos);
     * miCalculadora.calcular(operacion);
-  La Implementación Oculta (Lo que NO se ve): El handler.ts no tiene idea de que existen estos métodos "privados" (por convención, con guion bajo _). Estos son los detalles de implementación que se han ocultado.
+  - La Implementación Oculta (Lo que NO se ve): El handler.ts no tiene idea de que existen estos métodos "privados" (por convención, con guion bajo _). Estos son los detalles de implementación que se han ocultado.
     * // calculadora.ts
     * Calculadora.prototype._suma = function(this: ICalculadora): number { /* ... */ };
     * Calculadora.prototype._resta = function(this: ICalculadora): number { /* ... */ };
     * Calculadora.prototype._mult = function(this: ICalculadora): number { /* ... */ };
     * Calculadora.prototype._div = function(this: ICalculadora): number { /* ... */ };
-  Si mañana se decidiera cambiar la lógica de _suma para usar un método más eficiente, handler.ts no necesita ningún cambio, porque la abstracción (calcular) no cambió.
+  - Si mañana se decidiera cambiar la lógica de _suma para usar un método más eficiente, handler.ts no necesita ningún cambio, porque la abstracción (calcular) no cambió.
 
 **Caracteristicas de OOP NO utilizadas**
 1. Herencia (Extensión)
