@@ -32,10 +32,10 @@
 - Fundamentación: Antes, los datos (operandos) y la lógica (suma, resta, etc.) estaban en archivos separados. El handler.js tenía que importar todo y actuar como un "coordinador" manual. Ahora, la Calculadora es una unidad autónoma.
 - Ejemplo: La función constructora Calculadora crea un objeto que "encapsula" su propio estado:
   * function Calculadora(this: ICalculadora) {
-  *    this.operandos = []; // Estado (dato)
-  *    this.resultado = null; // Estado (dato)
+     * this.operandos = []; // Estado (dato)
+     * this.resultado = null; // Estado (dato)
   * }
-  Y también encapsula su comportamiento (métodos):
+  - Y también encapsula su comportamiento (métodos):
   * Calculadora.prototype.calcular = function(this: ICalculadora, operacion: number): void {
   *    // ...lógica de switch...
   * };
