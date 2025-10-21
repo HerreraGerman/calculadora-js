@@ -38,7 +38,7 @@
   Y también encapsula su comportamiento (métodos):
   * Calculadora.prototype.calcular = function(this: ICalculadora, operacion: number): void {
   *    // ...lógica de switch...
-  * };
+  * };\n
   La instancia miCalculadora en handler.ts ahora "posee" tanto sus datos como la lógica para trabajar con ellos.
 
 2. Abstracción
